@@ -21,34 +21,36 @@ values
 
 insert into `order` (created_at, customer_id)
 values 
-('2023-11-22', 2),
-('2019-01-02', 5),
-('2019-03-22', 5),
-('2012-11-12', 5),
-('2021-01-02', 2);
+('2021-11-22', 4),
+('2017-01-02', 4),
+('2023-03-22', 5),
+('2023-11-12', 3),
+('2021-01-02', 3);
 
 insert into order_item (order_id, item_id)
 values
-(3, 7),
-(2, 5),
-(5, 4),
+(1, 1),
+(1, 1),
 (1, 3),
 (3, 1),
-(4, 8),
-(3, 9),
-(2, 10),
-(2, 7),
-(1, 4),
+(3, 5),
+(3, 4),
 (4, 6),
-(5, 6),
-(1, 2),
-(3, 1),
-(2, 10);
+(4, 10),
+(2, 8),
+(2, 3),
+(5, 7),
+(5, 9),
+(5, 1),
+(2, 2),
+(2, 6);
 
 select username, `order`.created_at 
 from customer inner join `order` 
 on customer.id = `order`.customer_id
-where `order`.created_at >= '2021-01-01' and username = 'user_1';
+where `order`.created_at >= '2021-01-01'
+order by created_at  DESC 
+limit 1;
 
 select username, count(`order`.id) 
 from customer inner join `order`
@@ -71,3 +73,26 @@ on `order`.customer_id = customer.id
 group by order_item.id
 order by SUM(price) desc
 limit 1;
+
+select customer.username, SUM(price)
+from item
+inner join order_item 
+on item.id = order_item.item_id 
+inner join `order`
+on order_item.order_id = `order`.id
+inner join customer
+on `order`.customer_id = customer.id
+group by customer.id
+order by SUM(price) desc;
+
+SELECT username, AVG(price)
+from item
+inner join order_item 
+on item.id = order_item.item_id
+inner join `order`
+on order_item.order_id = `order`.id 
+inner join customer
+on `order`.id = customer.id 
+group by username
+order by AVG(price) desc;
+

@@ -29,7 +29,7 @@ CREATE TABLE `customer` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `customer_UN` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +55,7 @@ CREATE TABLE `item` (
   `description` varchar(200) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES ('item_1',90,'description text',1),('item_2',10,'description text',2),('item_3',1000,'description text',3),('item_4',1666,'description text',4),('item_5',25,'description text',5),('item_6',300,'description text',6),('item_7',750,'description text',7),('item_8',50,'description text',8),('item_9',150,'description text',9),('item_10',125,'description text',10);
+INSERT INTO `item` VALUES ('item_1',90,'description text',1),('item_2',10,'description text',2),('item_3',1000,'description text',3),('item_4',75,'description text',4),('item_5',25,'description text',5),('item_6',300,'description text',6),('item_7',750,'description text',7),('item_8',50,'description text',8),('item_9',150,'description text',9),('item_10',125,'description text',10);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +82,7 @@ CREATE TABLE `order` (
   PRIMARY KEY (`id`),
   KEY `order_FK` (`customer_id`),
   CONSTRAINT `order_FK` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES ('2021-01-02',1,1),('2022-01-02',1,2),('2023-03-22',1,3),('2012-11-12',3,4),('2021-01-02',2,5),('2022-01-02',2,6),('2019-01-02',2,7),('2019-03-22',4,8),('2012-11-12',5,9),('2021-01-02',2,10),('2023-11-22',2,11),('2019-01-02',5,12),('2019-03-22',5,13),('2012-11-12',5,14),('2021-01-02',2,15);
+INSERT INTO `order` VALUES ('2023-11-22',1,1),('2019-01-02',2,2),('2019-03-22',3,3),('2012-11-12',4,4),('2021-01-02',5,5),('2022-06-22',4,6),('2023-03-12',4,7),('2022-12-12',5,8),('2023-11-12',3,9),('2021-01-02',3,10);
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ CREATE TABLE `order_item` (
   KEY `order_item_FK_1` (`item_id`),
   CONSTRAINT `order_item_FK` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_item_FK_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `order_item` (
 
 LOCK TABLES `order_item` WRITE;
 /*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
-INSERT INTO `order_item` VALUES (3,7,2),(2,5,3),(5,3,4),(1,3,5),(3,1,6),(4,8,7),(3,9,8),(2,10,9),(2,7,10),(1,3,11),(4,4,12),(5,6,13),(1,2,14),(3,1,15),(2,10,16);
+INSERT INTO `order_item` VALUES (1,1,1),(3,1,4),(3,5,5),(3,4,6),(4,6,7),(4,10,8),(2,8,9),(2,3,10),(5,7,11),(5,9,12),(5,1,13),(2,2,14),(2,6,15),(6,10,16),(10,8,17),(7,4,18),(9,7,19),(9,3,20);
 /*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-21 18:00:22
+-- Dump completed on 2023-05-21 18:48:44
